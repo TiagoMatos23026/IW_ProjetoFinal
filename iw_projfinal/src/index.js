@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Register from './Register/Register';
 import Layout from './Layout/Layout';
 import Home from './Home/Home';
 import WIP from './WIP/WIP';
@@ -13,7 +13,7 @@ import {
   Route,
 
 } from "react-router-dom";
-import Register from './Register/Register';
+
 
 
 export default function App() {
