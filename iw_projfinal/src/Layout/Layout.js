@@ -24,7 +24,7 @@ class Layout extends Component {
 
                         <Link className="navbar-brand" to="/Home">HowToMaster</Link>
 
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div className="container mr-1" >
 
                             <form className="form-inline ml-auto">
                                 <input className="form-control mr-3" type="search" placeholder="" aria-label="Search" />
