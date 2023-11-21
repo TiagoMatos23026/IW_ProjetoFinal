@@ -3,11 +3,8 @@ import { Outlet, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Layout extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showModal: false,
-        }
+    state = {
+        showModal : false
     }
 
     handleError = () => {
@@ -31,13 +28,13 @@ class Layout extends Component {
 
                             <form className="form-inline ml-auto">
                                 <input className="form-control mr-3" type="search" placeholder="" aria-label="Search" />
-                                <Link className="btn btn-success" type="submit" to="/Perfil">Perfil</Link>
+                                <Link className="btn btn-success" type="submit" to="/Profile">Perfil</Link>
                             </form>
 
                             <ul className="navbar-nav">
                                 <li className="nav-item">
 
-                                    <Link type="button" className="btn btn-info ml-3" to="/WIP">Registar</Link>
+                                    <Link type="button" className="btn btn-info ml-3" to="/Register">Registar</Link>
                                 </li>
                                 <li className="nav-item">
 

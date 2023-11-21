@@ -13,6 +13,7 @@ import {
   Route,
 
 } from "react-router-dom";
+import Register from './Register/Register';
 
 
 export default function App() {
@@ -20,9 +21,11 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="Home" element={<Home />} />
+          
           <Route path="WIP" element={<WIP />} />
+          <Route path="Home" element={<Home />} />
           <Route path="Profile" element={<Profile />} />
+          <Route path="Register" element={<Register />} />
           
         </Route>
       </Routes>
