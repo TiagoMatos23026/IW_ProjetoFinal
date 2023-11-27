@@ -44,29 +44,15 @@ class Register extends Component {
             }
         };
 
-        let objLoginUser = {
-            password: this.state.passwordUtente,
-            username: this.state.emailUtente
-        }
-
         var requestOptionsUser = {
             method: 'POST',
             redirect: 'follow',
             headers: {
                 "Content-Type": "application/json",
-                Accept: "application/json"
+                Accept: "application/json",
+                'Authorization': 'Bearer segredo'
             },
             body: JSON.stringify(objUser)
-        };
-
-        var requestOptionsLoginUser = {
-            method: 'POST',
-            redirect: 'follow',
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify(objLoginUser)
         };
 
         //fetch para criar User
@@ -198,7 +184,7 @@ class Register extends Component {
 
     render() {
         return (
-            <div class="container-fluid">
+            <div class="container ms-1">
                 <div class="container-fluid mb-3 ms-3">
                     <h2 for="nome" class="form-label">Introduza os seus dados</h2>
 

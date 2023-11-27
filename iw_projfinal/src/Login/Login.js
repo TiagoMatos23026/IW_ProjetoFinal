@@ -17,14 +17,15 @@ class Login extends Component {
         };
     }
 
-    async funcaoLogin() {
+    funcaoLogin() {
+
         //caso os dados não estejam todos preenchidos
         if (this.state.email === null || this.state.email === "" || this.state.password === null || this.state.password === "") {
 
-            this.setState({erro: "Por favor preencha todos os dados."});
-            this.setState({showModal: true});
+            this.setState({erro: "Por favor preencha todos os dados."}); //mensagem de erro
+            this.setState({showModal: true}); //janela de erro
 
-        //caso os dados tenham sido introduzidos
+        //caso os dados tenham sido introduzidos corretamente
         } else {
 
             var requestOptions = {
@@ -34,6 +35,8 @@ class Login extends Component {
                     "Content-Type": "application/json",
                     Accept: "application/json",
                     'Authorization': 'Bearer segredo'
+                    //Como a aplicação está a aceder aos utentes para verificar se as credenciais estão corretas, foi introduzido o
+                    //bearer token (password da api) diretamente no código
                 },
             };
 
@@ -41,35 +44,45 @@ class Login extends Component {
                 .then(res => {
                     if (!res.ok) {
                         throw new Error();
+                        //caso a api não devolva informações, é lançado um erro
                     }
-                    return res.json();
+                    return res.json(); //conversão da resposta da api num objeto json
                 })
-                .then(json => json.utilizadores)
-                .then(result => this.setState({listaUsers: result}))
-                .catch(error => {
-                    console.log('error', error);
-                    this.setState({erro: "Por favor, verifique as suas credenciais"});
-                    this.setState({showModal: true});
+                .then(json => json.utilizadores) //conversão do objeto json encapsulado num objeto não encapsulado
+                .then(result => this.setState({listaUsers: result})) //o objeto é guardado na variavel de state "listaUsers"
+                .catch(error => { //qualquer erro é tratado aqui
+                    console.log('error', error); //o erro é impresso na consola
+                    this.setState({erro: "Por favor, verifique as suas credenciais"}); //mensagem de erro
+                    this.setState({showModal: true}); //janela de erro
+                    
                 });
 
-            let arrayUsers = this.state.listaUsers;
+            let arrayUsers = this.state.listaUsers; //uso de uma variável para guardar o valor da variável de state
 
-            for (let i = 0; i < arrayUsers.length; i++){
+            //ciclo que percorre todos os utilizadores à procura do utilizador que coincida com as credenciais introduzidas
+            for (let i = 0; i < arrayUsers.length; i++){ 
+                 
+                //caso o email seja encontrado na base de dados
+                if (arrayUsers[i].email === this.state.email){ 
+                    console.log("Email encontrado") //confirmação de que o email existe na base de dados
 
-                if (arrayUsers[i].email === this.state.email){
-                    console.log("Email encontrado")
+                    //caso o email e a password coincidam
                     if(arrayUsers[i].password === this.state.password){
-                        console.log("Login feito")
-                        sessionStorage.setItem("token", "segredo")
-                        sessionStorage.setItem("idUser", arrayUsers[i].id)
-                        window.location.href = "/Home"
-                    }else{
-                        this.setState({erro: "Password Errada"})
-                        this.setState({showModal: true})
-                    }
+                        console.log("Login feito") //o login é efetuado
+                        sessionStorage.setItem("token", "segredo") //o bearer token é guardado em sessão
+                        sessionStorage.setItem("userID", arrayUsers[i].id) //o id do utilizador logged in é guardado em sessão
+                        window.location.href = "/Home" //o utilizador é enviado para a Homepage
 
+                    //caso apenas o email coincida
+                    }else{
+                        this.setState({erro: "Password Errada"}) //mensagem de erro
+                        this.setState({showModal: true}) //janela de erro
+                    }
+                //caso o email não seja encontrado na base de dados
                 }else{
-                    console.log("Email não encontrado")
+                    console.log("Email não encontrado") //rejeição da credencial
+                    this.setState({erro: "Por favor, verifique as suas credenciais"}) //mensagem de erro
+                    this.setState({showModal: true}) //janela de erro
                 }
 
             }   
@@ -79,10 +92,11 @@ class Login extends Component {
     render() {
         return (
             <div>
+
+                {/*Aspeto da página para a introdução de dados*/}
                 <div className="container ms-1">
                     <h3>Efetuar Login</h3>
                     <div>
-
                         <p>Introduza os seus dados</p>
                         <input onChange={(evt) => this.setState({email: evt.target.value})} type="text" class="form-control mb-3" placeholder="Email"></input>
 
@@ -95,6 +109,7 @@ class Login extends Component {
                     </div>
                 </div>
 
+                {/*Aspeto da janela de erro*/}
                 <div>
                     <Modal show={this.state.showModal} onHide={() => this.setState({showModal: false})}>
                         <Modal.Header closeButton>

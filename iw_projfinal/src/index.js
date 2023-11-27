@@ -23,16 +23,14 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          
-          <Route path="Home" element={<WIP />} />
-          <Route path="Profile" element={<Profile />} />
-          <Route path="Register" element={<Register />} />
-          <Route path="CreatePage" element={<CreatePage />} />
-          <Route path="Login" element={<Login />} />
-          <Route path="Logout" element={<WIP />} />
+        <Route className ="container" path="/" element={<Layout />}>
+            <Route className ="container" path="Home" element={<WIP />} />
+            <Route className ="container" path="Profile" element={<Profile />} />
+            <Route className ="container" path="Register" element={<Register />} />
+            <Route className ="container" path="CreatePage" element={<CreatePage />} />
+            <Route className ="container" path="Login" element={<Login />} />
+            <Route className ="container" path="Logout" element={<WIP />} />
 
-          
         </Route>
       </Routes>
     </Router>
@@ -40,5 +38,5 @@ export default function App() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App /> );
+root.render(<App />);
 

@@ -3,25 +3,20 @@ import { Outlet, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Layout extends Component {
-    state = {
-        showModal : false
+
+    funcLogout(){ //função para logout
+        sessionStorage.setItem("token", null); //eliminação do bearer token da sessão
+        sessionStorage.setItem("idUser", null); //eliminação do id do utilizador que estava logged in
+
+        //sem o bearer token e a informação de qual utente está logged in, a aplicação automaticamente perde o acesso às informações 
+        //deste utilizador e efetivamente faz o logout
+
+        window.location.href = "/Home" //redirecionamento para a Homepage
     }
 
-    handleError = () => {
-        this.setState({ showModal: true });
-    }
+    verifyLogging(){ //função para verificação de login
 
-    handleClose = () => {
-        this.setState({ showModal: false });
-    }
-
-    async funcLogout(){
-        sessionStorage.setItem("token", null);
-        sessionStorage.setItem("idUser", null);
-        window.location.href = "/Home"
-    }
-
-    verifyLogging = () => {
+         //caso a variável de sessão coincida com o bearer token
         if (sessionStorage.getItem("token") === 'segredo'){
             return true;
         }else{
@@ -33,18 +28,18 @@ class Layout extends Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+                <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-3">
                     <div className="container-fluid">
 
                         <Link className="navbar-brand" to="/Home">HowToMaster</Link>
 
                         <div className="container mr-1" >
-
+                            
                             <form className="form-inline ml-auto">
                                 <input className="form-control mr-2" type="search" placeholder="" aria-label="Search" />
-                                
                             </form>
 
+                            {/*Esta porção de código apenas é mostrada caso o utilizador esteja logged in*/}
                             {this.verifyLogging() && <ul className="navbar-nav">
 
                                 <li className="nav-item">
@@ -61,15 +56,18 @@ class Layout extends Component {
 
                             </ul>}
 
-                            {!this.verifyLogging() && <ul className="navbar-nav">
-                                <li className="nav-item">
 
+                            {/*Esta porção de código apenas é mostrada caso o utilizador esteja logged out*/}
+                            {!this.verifyLogging() && <ul className="navbar-nav">
+                                
+                                <li className="nav-item">
                                     <Link type="button" className="btn btn-info ml-3" to="/Register">Registar</Link>
                                 </li>
-                                <li className="nav-item">
 
+                                <li className="nav-item">
                                     <Link type="button" className="btn btn-warning ml-3" to="/Login">Log In</Link>
                                 </li>
+
                             </ul>}
 
                         </div>
