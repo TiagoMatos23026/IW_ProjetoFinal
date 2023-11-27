@@ -15,6 +15,20 @@ class Layout extends Component {
         this.setState({ showModal: false });
     }
 
+    async funcLogout(){
+        sessionStorage.setItem("token", null);
+        sessionStorage.setItem("idUser", null);
+        window.location.href = "/Home"
+    }
+
+    verifyLogging = () => {
+        if (sessionStorage.getItem("token") === 'segredo'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     render() {
         return (
@@ -27,20 +41,36 @@ class Layout extends Component {
                         <div className="container mr-1" >
 
                             <form className="form-inline ml-auto">
-                                <input className="form-control mr-3" type="search" placeholder="" aria-label="Search" />
-                                <Link className="btn btn-success" type="submit" to="/Profile">Perfil</Link>
+                                <input className="form-control mr-2" type="search" placeholder="" aria-label="Search" />
+                                
                             </form>
 
-                            <ul className="navbar-nav">
+                            {this.verifyLogging() && <ul className="navbar-nav">
+
+                                <li className="nav-item">
+                                <Link type="button" className="btn btn-success ml-3" to="/Profile">Meu Perfil</Link>
+                                </li>
+
+                                <li className="nav-item">
+                                    <Link type="button" className="btn btn-danger ml-3" to="/CreatePage">Criar Página</Link>
+                                </li>
+
+                                <li className="nav-item">
+                                    <button type="button" className="btn btn-warning ml-3" onClick={() => this.funcLogout()}>Sair</button>
+                                </li>
+
+                            </ul>}
+
+                            {!this.verifyLogging() && <ul className="navbar-nav">
                                 <li className="nav-item">
 
                                     <Link type="button" className="btn btn-info ml-3" to="/Register">Registar</Link>
                                 </li>
                                 <li className="nav-item">
 
-                                    <Link type="button" className="btn btn-warning ml-3" to="/WIP">Log In</Link>
+                                    <Link type="button" className="btn btn-warning ml-3" to="/Login">Log In</Link>
                                 </li>
-                            </ul>
+                            </ul>}
 
                         </div>
                     </div>

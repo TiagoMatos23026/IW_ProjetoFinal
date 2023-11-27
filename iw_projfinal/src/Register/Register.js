@@ -31,18 +31,18 @@ class Register extends Component {
     async registerUser() {
         let objUser = {
             utilizadore: {
-              nome: this.state.nome,
-              nickname: this.state.nickname,
-              password: this.state.password,
-              email: this.state.email,
-              telemovel: this.state.telemovel,
-          
-              dataNascimento: this.state.dataNascimento,
-              biografia: this.state.biografia,
-              membro: this.state.membroYorN,
-              listaPaginas: this.state.listaPaginas,
+                nome: this.state.nome,
+                nickname: this.state.nickname,
+                password: this.state.password,
+                email: this.state.email,
+                telemovel: this.state.telemovel,
+
+                dataNascimento: this.state.dataNascimento,
+                biografia: this.state.biografia,
+                membro: this.state.membroYorN,
+                listaPaginas: this.state.listaPaginas,
             }
-          };
+        };
 
         let objLoginUser = {
             password: this.state.passwordUtente,
@@ -178,22 +178,17 @@ class Register extends Component {
 
         if (nome === '' || password === '' || nickname === '' || dataNascimento === '' ||
             email === '' || telemovel === '' || biografia === '') {
-
             this.setState({ erro: "Por favor preencha todos os campos.", showModal: true })
 
         } else if (nome === null || password === null || nickname === null || dataNascimento === null ||
             email === null || telemovel === null || biografia === null) {
-
             this.setState({ erro: "Por favor preencha todos os campos.", showModal: true })
 
         } else {
-
             if (password !== confPassword) {
-
                 this.setState({ erro: "As passwords não são iguais.", showModal: true })
 
             } else {
-
                 this.registerUser();
                 window.location.href = "/Home"
 
@@ -203,78 +198,55 @@ class Register extends Component {
 
     render() {
         return (
-
-
             <div class="container-fluid">
                 <div class="container-fluid mb-3 ms-3">
                     <h2 for="nome" class="form-label">Introduza os seus dados</h2>
-                    
-                </div>
 
+                </div>
                 <div class="container-fluid mb-3 ms-3">
                     <label for="nome" class="form-label">Nome Completo</label>
                     <input type="email" class="form-control me-auto" id="nome" placeholder="'Ex: Tiago Filipe Lopes de Matos'"
                         value={this.state.nome} onChange={(evt) => { this.handleNomeChange(evt) }}></input>
                 </div>
-
                 <div class="container-fluid mb-3 ms-3">
                     <label class="form-label" for="nickname">Nickname</label>
                     <input type="nickname" id="dificuldade" class="form-control" placeholder="'Ex: tiagoflmatos"
                         value={this.state.nickname} onChange={(evt) => { this.handleNicknameChange(evt) }}></input>
                 </div>
-
                 <div class="container-fluid mb-3 ms-3">
                     <label for="pass" class="form-label">Password</label>
                     <input type="password" class="form-control me-auto" id="pass" rows="3" placeholder=""
                         value={this.state.password} onChange={(evt) => { this.handlePasswordChange(evt) }}></input>
                 </div>
-
                 <div class="container-fluid mb-3 ms-3">
                     <label for="confpass" class="form-label">Confirme Password</label>
                     <input type="password" class="form-control me-auto" id="confpass" rows="3" placeholder=""
                         value={this.state.confPassword} onChange={(evt) => { this.handleConfPasswordChange(evt) }}></input>
                 </div>
-
                 <div class="container-fluid mb-3 ms-3">
                     <label for="datanasc" class="form-label">Data de Nascimento</label>
                     <input type="email" class="form-control me-auto" id="datanasc" rows="3" placeholder="'dd/mm/aa'"
                         value={this.state.dataNasc} onChange={(evt) => { this.handleDataNascimentoChange(evt) }}></input>
                 </div>
-
-                {/*
-                <div class="mb-3 ms-3">
-                    <Form value={this.state.dataNascimentoUtente} onChange={(evt) => { this.handleDataNascimentoChange(evt) }}>
-                        <Form.Group controlId="datePicker">
-                            <Form.Label>Select a Date</Form.Label>
-                            <DatePicker />
-                        </Form.Group>
-                    </Form>
-                </div>
-                */}
-
                 <div class="container-fluid mb-3 ms-3">
                     <label for="conclusao" class="form-label">Email</label>
                     <input type="email" class="form-control me-auto" id="conclusao" rows="3" placeholder="'Ex: tiagoflmatos@gmail.com'"
                         value={this.state.email} onChange={(evt) => { this.handleEmailChange(evt) }}></input>
                 </div>
-
                 <div class="container-fluid mb-3 ms-3">
                     <label for="notas" class="form-label">Telemóvel</label>
                     <input type="email" class="form-control me-auto" id="notas" rows="3" placeholder=""
                         value={this.state.telemovel} onChange={(evt) => { this.handleTelemovelChange(evt) }}></input>
                 </div>
-
                 <div class="container-fluid mb-3 ms-3">
                     <label for="notas" class="form-label">Biografia</label>
                     <textarea class="form-control" id="notas" rows="3" placeholder=""
                         value={this.state.biografia} onChange={(evt) => { this.handleBiografiaChange(evt) }}></textarea>
                 </div>
-
                 <div class="container-fluid mb-3 ms-3">
                     <button class="btn btn-outline-danger mb-3 " type="submit" onClick={() => this.handleSubmit()}>Submeter</button>
 
                 </div>
-
                 <div>
                     <Modal show={this.state.showModal} onHide={() => this.handleClose()}>
 
@@ -291,8 +263,6 @@ class Register extends Component {
                         </Modal.Footer>
                     </Modal>
                 </div>
-
-
             </div>
         );
     }

@@ -6,6 +6,8 @@ import Layout from './Layout/Layout';
 import Home from './Home/Home';
 import WIP from './WIP/WIP';
 import Profile from './Profile/Profile';
+import CreatePage from './CreatePage/CreatePage';
+import Login from './Login/Login';
 
 import {
   BrowserRouter as Router,
@@ -16,16 +18,20 @@ import {
 
 
 
+
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
           
-          <Route path="WIP" element={<WIP />} />
-          <Route path="Home" element={<Home />} />
+          <Route path="Home" element={<WIP />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="Register" element={<Register />} />
+          <Route path="CreatePage" element={<CreatePage />} />
+          <Route path="Login" element={<Login />} />
+          <Route path="Logout" element={<WIP />} />
+
           
         </Route>
       </Routes>
