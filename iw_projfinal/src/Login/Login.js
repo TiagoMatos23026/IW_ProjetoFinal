@@ -40,7 +40,7 @@ class Login extends Component {
                 },
             };
 
-            fetch("https://api.sheety.co/603075854cd9316246fab517d2525742/iwProjFinal/utilizadores", requestOptions)
+            fetch("https://api.sheety.co/f3ef01c50366ea9a89b64403ecc55b41/iwProjFinal/utilizadores", requestOptions)
                 .then(res => {
                     if (!res.ok) {
                         throw new Error();
