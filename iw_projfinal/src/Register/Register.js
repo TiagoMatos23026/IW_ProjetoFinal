@@ -186,17 +186,17 @@ class Register extends Component {
         return (
             <div class="container ms-1">
                 <div class="container-fluid mb-3 ms-3">
-                    <h2 for="nome" class="form-label">Introduza os seus dados</h2>
+                    <h1 for="nome" class="form-label">Introduza os seus dados</h1>
 
                 </div>
                 <div class="container-fluid mb-3 ms-3">
                     <label for="nome" class="form-label">Nome Completo</label>
-                    <input type="email" class="form-control me-auto" id="nome" placeholder="'Ex: Tiago Filipe Lopes de Matos'"
+                    <input type="email" class="form-control me-auto" id="nome" placeholder="'Ex: João Miguel Lopes Ferreira'"
                         value={this.state.nome} onChange={(evt) => { this.handleNomeChange(evt) }}></input>
                 </div>
                 <div class="container-fluid mb-3 ms-3">
                     <label class="form-label" for="nickname">Nickname</label>
-                    <input type="nickname" id="dificuldade" class="form-control" placeholder="'Ex: tiagoflmatos"
+                    <input type="nickname" id="dificuldade" class="form-control" placeholder="'Ex: jonnyMiguelLopesF"
                         value={this.state.nickname} onChange={(evt) => { this.handleNicknameChange(evt) }}></input>
                 </div>
                 <div class="container-fluid mb-3 ms-3">
@@ -216,12 +216,12 @@ class Register extends Component {
                 </div>
                 <div class="container-fluid mb-3 ms-3">
                     <label for="conclusao" class="form-label">Email</label>
-                    <input type="email" class="form-control me-auto" id="conclusao" rows="3" placeholder="'Ex: tiagoflmatos@gmail.com'"
+                    <input type="email" class="form-control me-auto" id="conclusao" rows="3" placeholder="'Ex: joaomglopes@gmail.com'"
                         value={this.state.email} onChange={(evt) => { this.handleEmailChange(evt) }}></input>
                 </div>
                 <div class="container-fluid mb-3 ms-3">
                     <label for="notas" class="form-label">Telemóvel</label>
-                    <input type="email" class="form-control me-auto" id="notas" rows="3" placeholder=""
+                    <input type="email" class="form-control me-auto" id="notas" rows="3" placeholder="XXX XXX XXX"
                         value={this.state.telemovel} onChange={(evt) => { this.handleTelemovelChange(evt) }}></input>
                 </div>
                 <div class="container-fluid mb-3 ms-3">
@@ -230,7 +230,7 @@ class Register extends Component {
                         value={this.state.biografia} onChange={(evt) => { this.handleBiografiaChange(evt) }}></textarea>
                 </div>
                 <div class="container-fluid mb-3 ms-3">
-                    <button class="btn btn-outline-danger mb-3 " type="submit" onClick={() => this.handleSubmit()}>Submeter</button>
+                    <button class="btn btn-info mb-3 " type="submit" onClick={() => this.handleSubmit()}>Submeter</button>
 
                 </div>
                 <div>
