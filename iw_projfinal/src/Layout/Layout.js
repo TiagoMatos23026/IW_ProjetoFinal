@@ -6,7 +6,7 @@ class Layout extends Component {
 
     funcLogout(){ //função para logout
         sessionStorage.setItem("token", null); //eliminação do bearer token da sessão
-        sessionStorage.setItem("idUser", null); //eliminação do id do utilizador que estava logged in
+        sessionStorage.setItem("userID", null); //eliminação do id do utilizador que estava logged in
 
         //sem o bearer token e a informação de qual utente está logged in, a aplicação automaticamente perde o acesso às informações 
         //deste utilizador e efetivamente faz o logout

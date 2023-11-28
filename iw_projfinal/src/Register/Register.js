@@ -37,7 +37,7 @@ class Register extends Component {
                 email: this.state.email,
                 telemovel: this.state.telemovel,
 
-                dataNascimento: this.state.dataNasc,
+                dataNasc: this.state.dataNasc,
                 biografia: this.state.biografia,
                 membro: this.state.membroYorN,
                 listaPaginas: this.state.listaPaginas,

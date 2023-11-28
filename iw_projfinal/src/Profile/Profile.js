@@ -74,7 +74,7 @@ class Profile extends Component {
                 <div className="card">
                     <div className="card-body">
                         <img src="https://picsum.photos/200/200" alt="Profile" class="img-fluid" />
-                        <h5 className="card-title mt-2">{this.state.userProfile.nickname}</h5>
+                        <h5 className="card-title mt-2">{this.state.userProfile.nome}</h5>
                         <p className="card-text">{this.state.userProfile.biografia}</p>
                     </div>
                 </div>
