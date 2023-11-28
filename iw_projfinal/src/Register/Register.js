@@ -37,7 +37,7 @@ class Register extends Component {
                 email: this.state.email,
                 telemovel: this.state.telemovel,
 
-                dataNascimento: this.state.dataNascimento,
+                dataNascimento: this.state.dataNasc,
                 biografia: this.state.biografia,
                 membro: this.state.membroYorN,
                 listaPaginas: this.state.listaPaginas,
@@ -157,16 +157,16 @@ class Register extends Component {
         let confPassword = this.state.confPassword;
 
         let nickname = this.state.nickname;
-        let dataNascimento = this.state.dataNascimento;
+        let dataNascimento = this.state.dataNasc;
         let email = this.state.email;
         let telemovel = this.state.telemovel;
         let biografia = this.state.biografia;
 
-        if (nome === '' || password === '' || nickname === '' || dataNascimento === '' ||
+        if (nome === '' || password === '' || nickname === '' || dataNasc === '' ||
             email === '' || telemovel === '' || biografia === '') {
             this.setState({ erro: "Por favor preencha todos os campos.", showModal: true })
 
-        } else if (nome === null || password === null || nickname === null || dataNascimento === null ||
+        } else if (nome === null || password === null || nickname === null || dataNasci === null ||
             email === null || telemovel === null || biografia === null) {
             this.setState({ erro: "Por favor preencha todos os campos.", showModal: true })
 
