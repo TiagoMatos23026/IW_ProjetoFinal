@@ -36,7 +36,7 @@ class Layout extends Component {
                         <div className="container mr-1" >
                             
                             <form className="form-inline ml-auto">
-                                <input className="form-control mr-2" type="search" placeholder="" aria-label="Search" />
+                                <input className="form-control mr-2" type="search" placeholder="Pesquisa" aria-label="Search" />
                             </form>
 
                             {/*Esta porção de código apenas é mostrada caso o utilizador esteja logged in*/}

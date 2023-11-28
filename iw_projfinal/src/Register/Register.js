@@ -190,8 +190,8 @@ class Register extends Component {
 
                 </div>
                 <div class="container-fluid mb-3 ms-3">
-                    <label for="nome" class="form-label">Nome Completo</label>
-                    <input type="email" class="form-control me-auto" id="nome" placeholder="'Ex: João Miguel Lopes Ferreira'"
+                    <label for="nome" class="form-label">Nome e Apelido</label>
+                    <input type="email" class="form-control me-auto" id="nome" placeholder="'Ex: João Ferreira'"
                         value={this.state.nome} onChange={(evt) => { this.handleNomeChange(evt) }}></input>
                 </div>
                 <div class="container-fluid mb-3 ms-3">

@@ -74,8 +74,15 @@ class Profile extends Component {
                 <div className="card">
                     <div className="card-body">
                         <img src="https://picsum.photos/200/200" alt="Profile" class="img-fluid" />
+<<<<<<< Updated upstream
                         <h5 className="card-title mt-2">{this.state.userProfile.nome}</h5>
+=======
+                        <h4 className="card-title mt-2">{this.state.userProfile.nickname}</h4>
+>>>>>>> Stashed changes
                         <p className="card-text">{this.state.userProfile.biografia}</p>
+                        
+                        <p className="card-text">{this.state.userProfile.dataNasc}</p>
+                        <p className="card-text">{this.state.userProfile.email}</p>
                     </div>
                 </div>
             </div>
