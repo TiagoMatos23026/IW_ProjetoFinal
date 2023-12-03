@@ -50,7 +50,7 @@ class Profile extends Component {
 
 
     render() {
-        return <div>
+        return <div class="p-3">
 
             {/*
             
@@ -70,20 +70,40 @@ class Profile extends Component {
             
             */}
 
-            <div className="col-md-4">
-                <div className="card">
-                    <div className="card-body">
-                        <img src="https://picsum.photos/200/200" alt="Profile" class="img-fluid" />
-
-                        <h5 className="card-title mt-2">{this.state.userProfile.nome}</h5>
-                        <h4 className="card-title mt-2">{this.state.userProfile.nickname}</h4>
-                        <p className="card-text">{this.state.userProfile.biografia}</p>
-                        
-                        <p className="card-text">{this.state.userProfile.dataNasc}</p>
-                        <p className="card-text">{this.state.userProfile.email}</p>
+            <div className="row">
+                <div className="col-md-2 text-center">
+                    <div className="card p-3">
+                        <img  src="https://picsum.photos/150/150" alt="Profile" className="rounded-circle mb-3 " />
+                        <h3 className="mb-2">{this.state.userProfile.nome}</h3>
+                        <h5 className="text-muted mb-4">{"@" + this.state.userProfile.nickname}</h5>
                     </div>
                 </div>
+                <div className="col-md-8">
+                    <div className="card">
+                        <div className="card-body">
+                            <h2 className="mb-3">Sobre mim:</h2>
+                            <h5 className="text-muted mb-3">{this.state.userProfile.biografia}</h5>
+                            <p className="card-text">Data de Nascimento: {this.state.userProfile.dataNasc}</p>
+                            <p className="card-text">E-mail: {this.state.userProfile.email}</p>
+                        </div>      
+                    </div>
+                    <div className="card mt-3">
+                        <div className="card-body">
+                            <h2 className="mb-3">Páginas:</h2>
+                            <h5 className="text-muted mb-3">Nº de páginas do utilizador</h5>
+                            <p className="card-text">Não sei </p>
+                            
+                        </div>      
+                    </div>
+
+                </div>
+                
             </div>
+
+
+
+
+
         </div>
     }
 }

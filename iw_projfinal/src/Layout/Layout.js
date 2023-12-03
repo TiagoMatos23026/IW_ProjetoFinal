@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Layout.css';
 
 class Layout extends Component {
 
@@ -28,10 +29,10 @@ class Layout extends Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+                <nav className="navbar navbar-expand-md navbar-dark bg-primary mb-3">
                     <div className="container-fluid">
 
-                        <Link className="navbar-brand" to="/Home">HowToMaster</Link>
+                        <Link className="navbar-brand text-light" to="/Home">HowToMaster</Link>
 
                         <div className="container mr-1" >
                             
@@ -43,15 +44,15 @@ class Layout extends Component {
                             {this.verifyLogging() && <ul className="navbar-nav">
 
                                 <li className="nav-item">
-                                <Link type="button" className="btn btn-success ml-3" to="/Profile">Meu Perfil</Link>
+                                <Link type="button" className="btn bg-custom ml-3" to="/Profile">Meu Perfil</Link>
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link type="button" className="btn btn-danger ml-3" to="/CreatePage">Criar Página</Link>
+                                    <Link type="button" className="btn bg-custom  ml-3" to="/CreatePage">Criar Página</Link>
                                 </li>
 
                                 <li className="nav-item">
-                                    <button type="button" className="btn btn-warning ml-3" onClick={() => this.funcLogout()}>Sair</button>
+                                    <button type="button" className="btn bg-custom  ml-3" onClick={() => this.funcLogout()}>Sair</button>
                                 </li>
 
                             </ul>}

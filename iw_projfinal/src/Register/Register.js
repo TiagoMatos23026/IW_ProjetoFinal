@@ -176,7 +176,7 @@ class Register extends Component {
 
             } else {
                 this.registerUser();
-                window.location.href = "/Home"
+                //window.location.href = "/Home"
 
             }
         }
@@ -196,7 +196,7 @@ class Register extends Component {
                 </div>
                 <div class="container-fluid mb-3 ms-3">
                     <label class="form-label" for="nickname">Nickname</label>
-                    <input type="nickname" id="dificuldade" class="form-control" placeholder="'Ex: jonnyMiguelLopesF"
+                    <input type="nickname" id="dificuldade" class="form-control" placeholder="'Ex: jonnyMiguel1"
                         value={this.state.nickname} onChange={(evt) => { this.handleNicknameChange(evt) }}></input>
                 </div>
                 <div class="container-fluid mb-3 ms-3">
@@ -221,7 +221,7 @@ class Register extends Component {
                 </div>
                 <div class="container-fluid mb-3 ms-3">
                     <label for="notas" class="form-label">Telemóvel</label>
-                    <input type="email" class="form-control me-auto" id="notas" rows="3" placeholder="XXX XXX XXX"
+                    <input type="email" class="form-control me-auto" id="notas" rows="3" placeholder="XXXXXXXXX"
                         value={this.state.telemovel} onChange={(evt) => { this.handleTelemovelChange(evt) }}></input>
                 </div>
                 <div class="container-fluid mb-3 ms-3">
