@@ -61,58 +61,7 @@ class Register extends Component {
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
 
-        /*
-        fetch("https://localhost:7032/api/auth/Register", requestOptionsLoginUtente)
-            .then(res => res.json())
-            .then(result => {
-                console.log(result)
-            })
-            .catch(error => console.log('error', error));
-        */
     }
-
-    /*
-    funcaoLogin = () => {
-        //caso os dados não estejam todos preenchidos
-
-
-        let obj = {
-            'Username': this.state.emailUtente,
-            'Password': this.state.passwordUtente
-        }
-
-        var requestOptions = {
-            method: 'POST',
-            redirect: 'follow',
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: JSON.stringify(obj)
-        };
-
-        fetch("https://localhost:7032/api/auth/Login", requestOptions)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error();
-                }
-                return res.json();
-            })
-            .then(result => {
-                sessionStorage.setItem("token", result);
-                console.log(result);
-                window.location.href = "/Home"
-            })
-            .catch(error => {
-                console.log('error', error);
-                this.setState({ erro: "Por favor, verifique as suas credenciais" });
-                this.setState({ showModal: true });
-            });
-
-
-
-    }
-    */
 
     handleNomeChange(evt) {
         this.setState({ nome: evt.target.value });
@@ -189,50 +138,60 @@ class Register extends Component {
                     <h1 for="nome" class="form-label">Introduza os seus dados</h1>
 
                 </div>
+
                 <div class="container-fluid mb-3 ms-3">
                     <label for="nome" class="form-label">Nome e Apelido</label>
                     <input type="email" class="form-control me-auto" id="nome" placeholder="'Ex: João Ferreira'"
                         value={this.state.nome} onChange={(evt) => { this.handleNomeChange(evt) }}></input>
                 </div>
+
                 <div class="container-fluid mb-3 ms-3">
                     <label class="form-label" for="nickname">Nickname</label>
                     <input type="nickname" id="dificuldade" class="form-control" placeholder="'Ex: jonnyMiguel1"
                         value={this.state.nickname} onChange={(evt) => { this.handleNicknameChange(evt) }}></input>
                 </div>
+
                 <div class="container-fluid mb-3 ms-3">
                     <label for="pass" class="form-label">Password</label>
                     <input type="password" class="form-control me-auto" id="pass" rows="3" placeholder=""
                         value={this.state.password} onChange={(evt) => { this.handlePasswordChange(evt) }}></input>
                 </div>
+
                 <div class="container-fluid mb-3 ms-3">
                     <label for="confpass" class="form-label">Confirme Password</label>
                     <input type="password" class="form-control me-auto" id="confpass" rows="3" placeholder=""
                         value={this.state.confPassword} onChange={(evt) => { this.handleConfPasswordChange(evt) }}></input>
                 </div>
+                
                 <div class="container-fluid mb-3 ms-3">
                     <label for="datanasc" class="form-label">Data de Nascimento</label>
                     <input type="email" class="form-control me-auto" id="datanasc" rows="3" placeholder="'dd/mm/aa'"
                         value={this.state.dataNasc} onChange={(evt) => { this.handleDataNascimentoChange(evt) }}></input>
                 </div>
+
                 <div class="container-fluid mb-3 ms-3">
                     <label for="conclusao" class="form-label">Email</label>
                     <input type="email" class="form-control me-auto" id="conclusao" rows="3" placeholder="'Ex: joaomglopes@gmail.com'"
                         value={this.state.email} onChange={(evt) => { this.handleEmailChange(evt) }}></input>
                 </div>
+
                 <div class="container-fluid mb-3 ms-3">
                     <label for="notas" class="form-label">Telemóvel</label>
                     <input type="email" class="form-control me-auto" id="notas" rows="3" placeholder="XXXXXXXXX"
                         value={this.state.telemovel} onChange={(evt) => { this.handleTelemovelChange(evt) }}></input>
                 </div>
+
                 <div class="container-fluid mb-3 ms-3">
                     <label for="notas" class="form-label">Biografia</label>
                     <textarea class="form-control" id="notas" rows="3" placeholder=""
                         value={this.state.biografia} onChange={(evt) => { this.handleBiografiaChange(evt) }}></textarea>
                 </div>
+
                 <div class="container-fluid mb-3 ms-3">
                     <button class="btn btn-info mb-3 " type="submit" onClick={() => this.handleSubmit()}>Submeter</button>
 
                 </div>
+                
                 <div>
                     <Modal show={this.state.showModal} onHide={() => this.handleClose()}>
 
