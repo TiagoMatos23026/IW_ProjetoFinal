@@ -176,7 +176,7 @@ class Register extends Component {
 
             } else {
                 this.registerUser();
-                //window.location.href = "/Home"
+                window.location.href = "/Home"
 
             }
         }

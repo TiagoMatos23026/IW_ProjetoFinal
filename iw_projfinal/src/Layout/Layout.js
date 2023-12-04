@@ -5,7 +5,7 @@ import './Layout.css';
 
 class Layout extends Component {
 
-    funcLogout(){ //função para logout
+    funcLogout() { //função para logout
         sessionStorage.setItem("token", null); //eliminação do bearer token da sessão
         sessionStorage.setItem("userID", null); //eliminação do id do utilizador que estava logged in
 
@@ -15,12 +15,12 @@ class Layout extends Component {
         window.location.href = "/Home" //redirecionamento para a Homepage
     }
 
-    verifyLogging(){ //função para verificação de login
+    verifyLogging() { //função para verificação de login
 
-         //caso a variável de sessão coincida com o bearer token
-        if (sessionStorage.getItem("token") === 'segredo'){
+        //caso a variável de sessão coincida com o bearer token
+        if (sessionStorage.getItem("token") === 'segredo') {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -29,30 +29,36 @@ class Layout extends Component {
     render() {
         return (
             <div>
-                <nav className="navbar navbar-expand-md navbar-dark bg-primary mb-3">
+                <nav className="navbar navbar-expand-md navbar-dark btn-secondary mb-3">
                     <div className="container-fluid">
 
-                        <Link className="navbar-brand text-light" to="/Home">HowToMaster</Link>
+
+                        <a class="navbar-brand" href="#">
+                            <img src="c:\Users\minot\Desktop\IW_ProjetoFinal-main\iw_projfinal\logo.png" width="30" height="30" class="d-inline-block align-top" alt="" />
+                               
+                        </a>
+
+                        <Link className="navbar-brand text-light " to="/Home" >HowToMaster</Link>
 
                         <div className="container mr-1" >
-                            
+
                             <form className="form-inline ml-auto">
-                                <input className="form-control mr-2" type="search" placeholder="Pesquisa" aria-label="Search" />
+                                <input className="form-control mr-2 bg-ligth" type="search" placeholder="Pesquisa" aria-label="Search" />
                             </form>
 
                             {/*Esta porção de código apenas é mostrada caso o utilizador esteja logged in*/}
                             {this.verifyLogging() && <ul className="navbar-nav">
 
                                 <li className="nav-item">
-                                <Link type="button" className="btn bg-custom ml-3" to="/Profile">Meu Perfil</Link>
+                                    <Link type="button" className="btn btn-warning ml-3" to="/Profile">Meu Perfil</Link>
                                 </li>
 
                                 <li className="nav-item">
-                                    <Link type="button" className="btn bg-custom  ml-3" to="/CreatePage">Criar Página</Link>
+                                    <Link type="button" className=" btn btn-info ml-3" to="/CreatePage">Criar Página</Link>
                                 </li>
 
                                 <li className="nav-item">
-                                    <button type="button" className="btn bg-custom  ml-3" onClick={() => this.funcLogout()}>Sair</button>
+                                    <button type="button" className="btn btn-success  ml-3" onClick={() => this.funcLogout()}>Sair</button>
                                 </li>
 
                             </ul>}
@@ -60,7 +66,7 @@ class Layout extends Component {
 
                             {/*Esta porção de código apenas é mostrada caso o utilizador esteja logged out*/}
                             {!this.verifyLogging() && <ul className="navbar-nav">
-                                
+
                                 <li className="nav-item">
                                     <Link type="button" className="btn btn-info ml-3" to="/Register">Registar</Link>
                                 </li>
