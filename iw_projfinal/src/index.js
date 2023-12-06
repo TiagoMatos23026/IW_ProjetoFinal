@@ -24,7 +24,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route className ="container" path="/" element={<Layout />}>
-            <Route className ="container" path="Home" element={<WIP />} />
+            <Route className ="container" path="Home" element={<Home />} />
             <Route className ="container" path="Profile" element={<Profile />} />
             <Route className ="container" path="Register" element={<Register />} />
             <Route className ="container" path="CreatePage" element={<CreatePage />} />

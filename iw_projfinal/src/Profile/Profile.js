@@ -37,7 +37,7 @@ class Profile extends Component {
         }*/
 
 
-        fetch("https://api.sheety.co/f3ef01c50366ea9a89b64403ecc55b41/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptions)
+        fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptions)
             .then(res => res.json())
             .then(json => json.utilizadore)
             .then(result => this.setState({ userProfile: result }))

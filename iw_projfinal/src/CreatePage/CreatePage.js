@@ -57,7 +57,7 @@ class CreatePage extends Component {
       body: JSON.stringify(obj)
     };
 
-    fetch("https://api.sheety.co/f3ef01c50366ea9a89b64403ecc55b41/iwProjFinal/paginas", requestOptions)
+    fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/paginas", requestOptions)
       .then(res => res.json())
       .then(result => {
         console.log(result)
