@@ -3,15 +3,16 @@ import React, { Component } from 'react';
 class Profile extends Component {
     kjn
     state = {
-        userProfile: {}
+        userProfile: {},
+        userPagesList: []
     };
 
     async componentDidMount() {
         await this.getProfile();
+        await this.getPaginas();
     }
 
     getProfile() {
-
         var requestOptions = {
             method: 'GET',
             redirect: 'follow',
@@ -44,12 +45,47 @@ class Profile extends Component {
             .catch(error => {
                 console.log('error', error);
                 this.setState({ userProfile: null })
-                window.location.href = "/Home"
             });
+    }
+
+    getPaginas() {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+            },
+        };
+
+        fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/paginas?filter[autorId]=" + sessionStorage.getItem("userID"), requestOptions)
+            .then(res => res.json())
+            .then(json => json.paginas)
+            .then(result => this.setState({ userPagesList: result }))
+            .catch(error => {
+                console.log('error', error);
+                this.setState({ userPagesList: null })
+            });
+
     }
 
 
     render() {
+        let pagesList = [];
+
+        for (let i = 0; i < this.state.userPagesList.length; i++) {
+            pagesList.push(
+                <div className="col-3 mt-3">
+                    <div className="card-body">
+                        <img className="card-img-top rounded float-start"  alt="imagem" src="https://picsum.photos/300/200"></img>
+                        <div className="container-fluid"></div>
+                        <h5 className="card-title ms-1">{this.state.userPagesList[i].titulo} </h5>
+                    </div>
+                </div>
+            )
+        }
+
         return <div class="p-3">
 
             {/*
@@ -90,8 +126,7 @@ class Profile extends Component {
                     <div className="card mt-3">
                         <div className="card-body">
                             <h2 className="mb-3">Páginas:</h2>
-                            <h5 className="text-muted mb-3">Nº de páginas do utilizador</h5>
-                            <p className="card-text">Não sei </p>
+                            <p className="card-text">{pagesList}</p>
                             
                         </div>      
                     </div>

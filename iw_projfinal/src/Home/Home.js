@@ -19,6 +19,20 @@ class Home extends Component {
         this.getPages();
     }
 
+    shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+    
+        while (currentIndex !== 0) {
+    
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+    
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+        return array;
+      }
+
     getPages() {
         var requestOptions = {
             method: 'GET',
@@ -72,12 +86,10 @@ class Home extends Component {
             pagesList.push(
                 <div className="col-3 mt-3">
                     <div className="card-body">
-                        <img className="card-img-top rounded float-start" alt="imagem" src="https://picsum.photos/300/200"></img>
-
+                        <img className="card-img-top rounded float-start" onClick={() => this.setState({ checkIfPage: true, pageID: i })} alt="imagem" src="https://picsum.photos/300/200"></img>
+                        <div className="container-fluid"></div>
                         <h5 className="card-title ms-1">{pages[i].titulo} </h5>
-                        <p className="card-text ms-1">Autor: {users[(pages[i].autorId) - 2].nome}</p>
-
-                        <button className="btn btn-warning" onClick={() => this.setState({ checkIfPage: true, pageID: i })}>Ver Página</button>
+                        <p className="card-text ms-1">@{users[(pages[i].autorId) - 2].nickname}</p>
                     </div>
                 </div>
             )
@@ -89,7 +101,7 @@ class Home extends Component {
             return (
                 <div className="container-fluid">
                     <div className="row justify-content-start">
-                        {pagesList}
+                        {this.shuffle(pagesList)}
                     </div>
                 </div>
             )
