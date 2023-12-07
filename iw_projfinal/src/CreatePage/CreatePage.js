@@ -17,7 +17,7 @@ class CreatePage extends Component {
       dificuldade: null,
       categoria: null,
 
-      autorID: sessionStorage.getItem("userID"),
+      autorId: sessionStorage.getItem("userID"),
       exclusividade: false,
 
       visualizacoes: 0,
@@ -37,8 +37,10 @@ class CreatePage extends Component {
         conclusao: this.state.conclusao,
         notas: this.state.notas,
         dificuldade: this.state.dificuldade,
+
         categoria: this.state.categoria,
-        autorID: this.state.autorID,
+        autorId: this.state.autorId,
+
         exclusividade: this.state.exclusividade,
         visualizacoes: this.state.visualizacoes,
         likes: this.state.likes,
@@ -61,7 +63,7 @@ class CreatePage extends Component {
       .then(res => res.json())
       .then(result => {
         console.log(result)
-        //window.location.href = "/Home"
+        window.location.href = "/Home"
       })
       .catch(error => console.log('error', error));
   }
@@ -98,27 +100,6 @@ class CreatePage extends Component {
     this.setState({ showModal: false });
   }
 
-  verObj(){
-    let obj = {
-      pagina: {
-        titulo: this.state.titulo,
-        introducao: this.state.introducao,
-        corpo: this.state.corpo,
-        conclusao: this.state.conclusao,
-        notas: this.state.notas,
-        dificuldade: this.state.dificuldade,
-        categoria: this.state.categoria,
-        autorID: this.state.autorID,
-        exclusividade: this.state.exclusividade,
-        visualizacoes: this.state.visualizacoes,
-        likes: this.state.likes,
-        comentarios: this.state.comentarios
-      }
-    };
-
-    console.log(obj)
-  }
-
   handleSubmit() {
     let titulo = this.state.titulo;
     let introducao = this.state.introducao;
@@ -140,7 +121,7 @@ class CreatePage extends Component {
     } else {
 
       this.criarPagina();
-      window.location.href = "/Home"
+      //window.location.href = "/Home"
 
     }
   }
@@ -219,8 +200,6 @@ class CreatePage extends Component {
 
         <div className="container-fluid ms-3 mb-3 mt-4" >
           <button className="btn btn-outline-danger mb-3 " type="submit" onClick={() => this.handleSubmit()}>Submeter</button>
-          <button className="btn btn-outline-danger mb-3 " type="submit" onClick={() => this.verObj()}>Ver objeto</button>
-
         </div>
 
         <div>

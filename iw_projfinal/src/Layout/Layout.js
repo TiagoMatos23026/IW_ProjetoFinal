@@ -33,9 +33,8 @@ class Layout extends Component {
                     <div className="container-fluid">
 
 
-                        <a class="navbar-brand" href="#">
-                            <img src="c:\Users\minot\Desktop\IW_ProjetoFinal-main\iw_projfinal\logo.png" width="30" height="30" class="d-inline-block align-top" alt="" />
-                               
+                        <a className="navbar-brand" href="#">
+                            <img src="c:\Users\minot\Desktop\IW_ProjetoFinal-main\iw_projfinal\logo.png" width="30" height="30" className="d-inline-block align-top" alt="" />
                         </a>
 
                         <Link className="navbar-brand text-light " to="/Home" >HowToMaster</Link>

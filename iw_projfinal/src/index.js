@@ -8,6 +8,7 @@ import WIP from './WIP/WIP';
 import Profile from './Profile/Profile';
 import CreatePage from './CreatePage/CreatePage';
 import Login from './Login/Login';
+import ViewPage from './ViewPage/ViewPage';
 
 import {
   BrowserRouter as Router,
@@ -29,6 +30,7 @@ export default function App() {
             <Route className ="container" path="Register" element={<Register />} />
             <Route className ="container" path="CreatePage" element={<CreatePage />} />
             <Route className ="container" path="Login" element={<Login />} />
+            <Route className ="container" path="ViewPage" element={<ViewPage />} />
             <Route className ="container" path="Logout" element={<WIP />} />
 
         </Route>

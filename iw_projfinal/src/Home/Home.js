@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
+import ViewPage from '../ViewPage/ViewPage';
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             pages: [],
-            users: []
+            users: [],
+            checkIfPage: false,
+            pageID: null
         };
     }
 
@@ -34,7 +38,7 @@ class Home extends Component {
             .catch(error => console.log('error', error));
     }
 
-    getUsers(){
+    getUsers() {
         var requestOptions = {
             method: 'GET',
             redirect: 'follow',
@@ -56,7 +60,6 @@ class Home extends Component {
 
 
     render() {
-
         let users = this.state.users;
         let pages = this.state.pages;
 
@@ -72,20 +75,26 @@ class Home extends Component {
                         <img className="card-img-top rounded float-start" alt="imagem" src="https://picsum.photos/300/200"></img>
 
                         <h5 className="card-title ms-1">{pages[i].titulo} </h5>
-                        <p className="card-text ms-1">Autor: {users[pages[i].autorId-2].nome}</p>
-                        <button className="btn btn-warning">Ver Página</button>
+                        <p className="card-text ms-1">Autor: {users[(pages[i].autorId) - 2].nome}</p>
+
+                        <button className="btn btn-warning" onClick={() => this.setState({ checkIfPage: true, pageID: i })}>Ver Página</button>
                     </div>
                 </div>
             )
         }
 
-        return (
-            <div className="container mt-4 mx-2">
-                <div className="row justify-content-start">
-                    {pagesList}
+        if (this.state.checkIfPage === true) {
+            return <ViewPage page={this.state.pages[this.state.pageID]} user={this.state.users[(pages[this.state.pageID].autorId) - 2]} />
+        }else{
+            return (
+                <div className="container-fluid">
+                    <div className="row justify-content-start">
+                        {pagesList}
+                    </div>
                 </div>
-            </div>
-        );
+            )
+        }
+
     }
 }
 
