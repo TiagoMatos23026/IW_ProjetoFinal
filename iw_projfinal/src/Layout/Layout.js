@@ -32,11 +32,11 @@ class Layout extends Component {
             <div>
                 <nav className="navbar navbar-expand-md navbar-dark btn-secondary mb-3">
                     <div className="container-fluid">
-
-
                         <a class="navbar-brand" href="#">
                             <img src={Logo} width="55" height="55" class="d-inline-block align-top" alt="" />
                                
+        
+                       
                         </a>
 
                         <Link className="navbar-brand text-light " to="/Home" >HowToMaster</Link>

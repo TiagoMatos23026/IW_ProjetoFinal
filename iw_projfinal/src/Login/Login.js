@@ -10,7 +10,7 @@ class Login extends Component {
             email: "",
             password: "",
 
-            listaUsers: [],
+            user: null,
 
             erro: "",
             showModal: false
@@ -40,16 +40,21 @@ class Login extends Component {
                 },
             };
 
-            fetch("https://api.sheety.co/f3ef01c50366ea9a89b64403ecc55b41/iwProjFinal/utilizadores", requestOptions)
+            //este fetch faz um fetch na api com o email que foi introduzido
+            fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/utilizadores?filter[email]=" + this.state.email, requestOptions)
                 .then(res => {
                     if (!res.ok) {
                         throw new Error();
-                        //caso a api não devolva informações, é lançado um erro
+                        //caso a api não devolva informações, é lançado um erro (provavelmente significa que o email não existe)
                     }
                     return res.json(); //conversão da resposta da api num objeto json
                 })
                 .then(json => json.utilizadores) //conversão do objeto json encapsulado num objeto não encapsulado
-                .then(result => this.setState({listaUsers: result})) //o objeto é guardado na variavel de state "listaUsers"
+                .then(result=> result[0])
+                .then(result => {
+                    this.setState({user: result}) //o objeto é guardado na variavel de state "users"
+                    console.log(this.state.user)
+                }) 
                 .catch(error => { //qualquer erro é tratado aqui
                     console.log('error', error); //o erro é impresso na consola
                     this.setState({erro: "Por favor, verifique as suas credenciais"}); //mensagem de erro
@@ -57,6 +62,19 @@ class Login extends Component {
                     
                 });
 
+            let user = this.state.user;
+
+            if (user.password === this.state.password ){
+                console.log("Login feito") //o login é efetuado
+                sessionStorage.setItem("token", "segredo") //o bearer token é guardado em sessão
+                sessionStorage.setItem("userID", this.state.user.id) //o id do utilizador logged in é guardado em sessão
+                window.location.href = "/Home" //o utilizador é enviado para a Homepage
+            }else{
+                this.setState({erro: "Password Errada"}) //mensagem de erro
+                this.setState({showModal: true}) //janela de erro
+            }
+
+            /*
             let arrayUsers = this.state.listaUsers; //uso de uma variável para guardar o valor da variável de state
 
             //ciclo que percorre todos os utilizadores à procura do utilizador que coincida com as credenciais introduzidas
@@ -86,6 +104,7 @@ class Login extends Component {
                 }
 
             }   
+            */
         }
     }
 

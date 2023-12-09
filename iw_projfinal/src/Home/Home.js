@@ -1,23 +1,112 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
+import ViewPage from '../ViewPage/ViewPage';
 
 class Home extends Component {
-    render() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            pages: [],
+            users: [],
+            checkIfPage: false,
+            pageID: null
+        };
+    }
 
-        return (
-            <div className="container-fluid">
-                <div className="alert alert-primary
-                 mb-3" role="alert">
-                    Homepage
+    componentDidMount() {
+        this.getUsers();
+        this.getPages();
+    }
+
+    shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+    
+        while (currentIndex !== 0) {
+    
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+    
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+        return array;
+      }
+
+    getPages() {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                'Authorization': 'Bearer segredo'
+            },
+        };
+
+        fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/paginas", requestOptions)
+            .then(res => res.json())
+            .then(result => {
+                this.setState({ pages: result.paginas })
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    getUsers() {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                'Authorization': 'Bearer segredo'
+            },
+        };
+
+        fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/utilizadores", requestOptions)
+            .then(res => res.json())
+            .then(result => {
+                this.setState({ users: result.utilizadores })
+            })
+            .catch(error => console.log('error', error));
+    }
+
+
+
+    render() {
+        let users = this.state.users;
+        let pages = this.state.pages;
+
+        console.log(this.state.users);
+        console.log(this.state.pages);
+
+        let pagesList = [];
+
+        for (let i = 0; i < this.state.pages.length; i++) {
+            pagesList.push(
+                <div className="col-3 mt-3">
+                    <div className="card-body">
+                        <img className="card-img-top rounded float-start" onClick={() => this.setState({ checkIfPage: true, pageID: i })} alt="imagem" src="https://picsum.photos/300/200"></img>
+                        <div className="container-fluid"></div>
+                        <h5 className="card-title ms-1">{pages[i].titulo} </h5>
+                        <p className="card-text ms-1">@{users[(pages[i].autorId) - 2].nickname}</p>
+                    </div>
                 </div>
-                <div className="alert alert-primary mb-3" role="alert">
-                    Coisas...
+            )
+        }
+
+        if (this.state.checkIfPage === true) {
+            return <ViewPage page={this.state.pages[this.state.pageID]} user={this.state.users[(pages[this.state.pageID].autorId) - 2]} />
+        }else{
+            return (
+                <div className="container-fluid">
+                    <div className="row justify-content-start">
+                        {this.shuffle(pagesList)}
+                    </div>
                 </div>
-                <div className="alert alert-primary mb-3" role="alert">
-                    Mais coisas...
-                </div>
-            </div>
-        );
+            )
+        }
+
     }
 }
 
