@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Layout.css';
+import Logo from '../novologo.png';
 
 class Layout extends Component {
 
@@ -34,7 +35,7 @@ class Layout extends Component {
 
 
                         <a class="navbar-brand" href="#">
-                            <img src="c:\Users\minot\Desktop\IW_ProjetoFinal-main\iw_projfinal\logo.png" width="30" height="30" class="d-inline-block align-top" alt="" />
+                            <img src={Logo} width="55" height="55" class="d-inline-block align-top" alt="" />
                                
                         </a>
 

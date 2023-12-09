@@ -218,8 +218,8 @@ class CreatePage extends Component {
         </div>
 
         <div className="container-fluid ms-3 mb-3 mt-4" >
-          <button className="btn btn-outline-danger mb-3 " type="submit" onClick={() => this.handleSubmit()}>Submeter</button>
-          <button className="btn btn-outline-danger mb-3 " type="submit" onClick={() => this.verObj()}>Ver objeto</button>
+          <button className="btn btn-outline-info mb-3 mr-3 " type="submit" onClick={() => this.handleSubmit()}>Submeter</button>
+          <button className="btn btn-outline-warning mb-3 " type="submit" onClick={() => this.verObj()}>Ver objeto</button>
 
         </div>
 
