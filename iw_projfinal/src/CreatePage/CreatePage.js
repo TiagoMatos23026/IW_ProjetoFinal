@@ -59,7 +59,7 @@ class CreatePage extends Component {
       body: JSON.stringify(obj)
     };
 
-    fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/paginas", requestOptions)
+    fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/paginas", requestOptions)
       .then(res => res.json())
       .then(result => {
         console.log(result)
@@ -200,7 +200,6 @@ class CreatePage extends Component {
 
         <div className="container-fluid ms-3 mb-3 mt-4" >
           <button className="btn btn-outline-info mb-3 mr-3 " type="submit" onClick={() => this.handleSubmit()}>Submeter</button>
-          <button className="btn btn-outline-warning mb-3 " type="submit" onClick={() => this.verObj()}>Ver objeto</button>
         </div>
 
         <div>

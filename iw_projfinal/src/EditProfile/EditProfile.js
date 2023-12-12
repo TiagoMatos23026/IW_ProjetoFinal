@@ -4,10 +4,12 @@ import { Button } from 'react-bootstrap';
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class Register extends Component {
+class EditProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentUser: null,
+
             nome: null,
             nickname: null,
             password: null,
@@ -28,32 +30,54 @@ class Register extends Component {
         };
     }
 
-    async registerUser() {
-        let objUser = {
-            utilizadore: {
-                nome: this.state.nome,
-                nickname: this.state.nickname,
-                password: this.state.password,
-                email: this.state.email,
-                telemovel: this.state.telemovel,
+    componentDidMount() {
+        this.getCurrentUser()
+    }
 
-                dataNasc: this.state.dataNasc,
-                biografia: this.state.biografia,
-                membro: this.state.membroYorN,
-                listaPaginas: this.state.listaPaginas,
-            }
-        };
-
+    async getCurrentUser() {
         var requestOptionsUser = {
-            method: 'POST',
+            method: 'GET',
             redirect: 'follow',
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json",
-                'Authorization': 'Bearer segredo'
+                'Authorization': 'Bearer ' + sessionStorage.getItem("token")
             },
-            body: JSON.stringify(objUser)
         };
+
+        await fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptionsUser)
+            .then(res => res.json())
+            .then(result => result.utilizadore)
+            .then(result => {
+                this.setState({ currentUser: result })
+                console.log(result)
+            })
+            .catch(error => console.log('error', error));
+
+
+    }
+
+    async setCurrentUser() {
+        this.setState({
+            nome: this.state.currentUser.nome,
+            nickname: this.state.currentUser.nickname,
+            password: this.state.currentUser.password,
+
+            confPassword: this.state.currentUser.password,
+
+            email: this.state.currentUser.email,
+            telemovel: this.state.currentUser.telemovel,
+
+            dataNasc: this.state.currentUser.dataNasc,
+            biografia: this.state.currentUser.biografia,
+            icon: this.state.currentUser.icon,
+            membroYorN: this.state.currentUser.membroYorN,
+            listaPaginas: this.state.currentUser.listaPaginas
+        })
+    }
+
+    /*
+    async 
 
         //fetch para criar User
         fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/utilizadores", requestOptionsUser)
@@ -62,6 +86,7 @@ class Register extends Component {
             .catch(error => console.log('error', error));
 
     }
+    */
 
     handleNomeChange(evt) {
         this.setState({ nome: evt.target.value });
@@ -99,44 +124,57 @@ class Register extends Component {
         this.setState({ showModal: false });
     }
 
-    handleSubmit() {
-        let nome = this.state.nome;
-        let password = this.state.password;
 
+    handleSubmit() {
+        let password = this.state.password;
         let confPassword = this.state.confPassword;
 
-        let nickname = this.state.nickname;
-        let dataNasc = this.state.dataNasc;
-        let email = this.state.email;
-        let telemovel = this.state.telemovel;
-        let biografia = this.state.biografia;
 
-        if (nome === '' || password === '' || nickname === '' || dataNasc === '' ||
-            email === '' || telemovel === '' || biografia === '') {
-            this.setState({ erro: "Por favor preencha todos os campos.", showModal: true })
-
-        } else if (nome === null || password === null || nickname === null || dataNasc === null ||
-            email === null || telemovel === null || biografia === null) {
-            this.setState({ erro: "Por favor preencha todos os campos.", showModal: true })
+        if (password !== confPassword) {
+            this.setState({ erro: "As passwords não são iguais.", showModal: true })
 
         } else {
-            if (password !== confPassword) {
-                this.setState({ erro: "As passwords não são iguais.", showModal: true })
 
-            } else {
-                this.registerUser();
-                window.location.href = "/Home"
+            let objUser = {
+                utilizadore: {
+                    nome: this.state.nome,
+                    nickname: this.state.nickname,
+                    password: this.state.password,
+                    email: this.state.email,
+                    telemovel: this.state.telemovel,
 
-            }
+                    dataNasc: this.state.dataNasc,
+                    biografia: this.state.biografia,
+                    membro: this.state.membroYorN,
+                    listaPaginas: this.state.listaPaginas,
+                }
+            };
+
+            var requestOptionsUser = {
+                method: 'PUT',
+                redirect: 'follow',
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                    'Authorization': 'Bearer segredo'
+                },
+                body: JSON.stringify(objUser)
+            };
+
+            fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/utilizadores", requestOptionsUser)
+                .then(res => res.json())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
         }
+
     }
+
 
     render() {
         return (
             <div class="container ms-1">
                 <div class="container-fluid mb-3 ms-3">
-                    <h1 for="nome" class="form-label">Introduza os seus dados</h1>
-
+                    <h1 for="nome" class="form-label">Edite os seus dados</h1>
                 </div>
 
                 <div class="container-fluid mb-3 ms-3">
@@ -160,9 +198,9 @@ class Register extends Component {
                 <div class="container-fluid mb-3 ms-3">
                     <label for="confpass" class="form-label">Confirme Password</label>
                     <input type="password" class="form-control me-auto" id="confpass" rows="3" placeholder=""
-                        value={this.state.confPassword} onChange={(evt) => { this.handleConfPasswordChange(evt) }}></input>
+                        value={this.state.password} onChange={(evt) => { this.handleConfPasswordChange(evt) }}></input>
                 </div>
-                
+
                 <div class="container-fluid mb-3 ms-3">
                     <label for="datanasc" class="form-label">Data de Nascimento</label>
                     <input type="email" class="form-control me-auto" id="datanasc" rows="3" placeholder="'dd/mm/aa'"
@@ -187,11 +225,14 @@ class Register extends Component {
                         value={this.state.biografia} onChange={(evt) => { this.handleBiografiaChange(evt) }}></textarea>
                 </div>
 
-                <div class="container-fluid mb-3 ms-3">
-                    <button class="btn btn-info mb-3 " type="submit" onClick={() => this.handleSubmit()}>Submeter</button>
-
+                <div class="container-fluid ms-3">
+                    <button class="btn btn-warning mb-3 " type="submit" onClick={() => this.setCurrentUser()}>Revelar Dados Atuais</button>
                 </div>
-                
+
+                <div class="container-fluid mb-3 ms-3">
+                    <button class="btn btn-success mb-3 " type="submit" onClick={() => this.handleSubmit()}>Submeter Dados Novos</button>
+                </div>
+
                 <div>
                     <Modal show={this.state.showModal} onHide={() => this.handleClose()}>
 
@@ -210,7 +251,8 @@ class Register extends Component {
                 </div>
             </div>
         );
+
     }
 }
 
-export default Register;
+export default EditProfile;

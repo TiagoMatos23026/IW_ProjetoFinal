@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Profile extends Component {
     kjn
@@ -38,7 +39,7 @@ class Profile extends Component {
         }*/
 
 
-        fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptions)
+        fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptions)
             .then(res => res.json())
             .then(json => json.utilizadore)
             .then(result => this.setState({ userProfile: result }))
@@ -59,7 +60,7 @@ class Profile extends Component {
             },
         };
 
-        fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/paginas?filter[autorId]=" + sessionStorage.getItem("userID"), requestOptions)
+        fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/paginas?filter[autorId]=" + sessionStorage.getItem("userID"), requestOptions)
             .then(res => res.json())
             .then(json => json.paginas)
             .then(result => this.setState({ userPagesList: result }))
@@ -76,9 +77,9 @@ class Profile extends Component {
 
         for (let i = 0; i < this.state.userPagesList.length; i++) {
             pagesList.push(
-                <div className="col-3 mt-3">
+                <div className="col-3">
                     <div className="card-body">
-                        <img className="card-img-top rounded float-start"  alt="imagem" src="https://picsum.photos/300/200"></img>
+                        <img className="card-img-top rounded float-start" alt="imagem" src="https://picsum.photos/300/200"></img>
                         <div className="container-fluid"></div>
                         <h5 className="card-title ms-1">{this.state.userPagesList[i].titulo} </h5>
                     </div>
@@ -109,7 +110,7 @@ class Profile extends Component {
             <div className="row">
                 <div className="col-md-2 text-center">
                     <div className="card p-3">
-                        <img  src="https://picsum.photos/150/150" alt="Profile" className="rounded-circle mb-3 " />
+                        <img src="https://picsum.photos/150/150" alt="Profile" className="rounded-circle mb-3 " />
                         <h3 className="mb-2">{this.state.userProfile.nome}</h3>
                         <h5 className="text-muted mb-4">{"@" + this.state.userProfile.nickname}</h5>
                     </div>
@@ -121,18 +122,25 @@ class Profile extends Component {
                             <h5 className="text-muted mb-3">{this.state.userProfile.biografia}</h5>
                             <p className="card-text">Data de Nascimento: {this.state.userProfile.dataNasc}</p>
                             <p className="card-text">E-mail: {this.state.userProfile.email}</p>
-                        </div>      
+
+                            <div className="row ">
+                                <div className="col-auto">
+                                    <Link className="btn btn-success mb-2" to="/EditProfile">Editar Perfil</Link>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className="card mt-3">
                         <div className="card-body">
                             <h2 className="mb-3">Páginas:</h2>
-                            <p className="card-text">{pagesList}</p>
-                            
-                        </div>      
+                            <div>{pagesList}</div>
+
+                        </div>
                     </div>
 
                 </div>
-                
+
             </div>
 
 

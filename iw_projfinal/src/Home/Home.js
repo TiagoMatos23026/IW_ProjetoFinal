@@ -44,8 +44,10 @@ class Home extends Component {
             },
         };
 
-        fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/paginas", requestOptions)
-            .then(res => res.json())
+        //fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/paginas", requestOptions)
+        fetch("./paginas.json", requestOptions)
+
+        .then(res => res.json())
             .then(result => {
                 this.setState({ pages: result.paginas })
             })
@@ -63,7 +65,7 @@ class Home extends Component {
             },
         };
 
-        fetch("https://api.sheety.co/c8f9393ba26be131ad4c95c036e9aba3/iwProjFinal/utilizadores", requestOptions)
+        fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/utilizadores", requestOptions)
             .then(res => res.json())
             .then(result => {
                 this.setState({ users: result.utilizadores })
@@ -86,8 +88,7 @@ class Home extends Component {
             pagesList.push(
                 <div className="col-3 mt-3">
                     <div className="card-body">
-                        <img className="card-img-top rounded float-start" onClick={() => this.setState({ checkIfPage: true, pageID: i })} alt="imagem" src="https://picsum.photos/300/200"></img>
-                        <div className="container-fluid"></div>
+                        <img className="card-img-top rounded float-start" onClick={() => this.setState({ checkIfPage: true, pageID: i })} alt="imagem" src={pages[i].imagem}></img>
                         <h5 className="card-title ms-1">{pages[i].titulo} </h5>
                         <p className="card-text ms-1">@{users[(pages[i].autorId) - 2].nickname}</p>
                     </div>
