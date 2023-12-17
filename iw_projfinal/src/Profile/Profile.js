@@ -39,7 +39,7 @@ class Profile extends Component {
         }*/
 
 
-        fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptions)
+        fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptions)
             .then(res => res.json())
             .then(json => json.utilizadore)
             .then(result => this.setState({ userProfile: result }))
@@ -60,7 +60,7 @@ class Profile extends Component {
             },
         };
 
-        fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/paginas?filter[autorId]=" + sessionStorage.getItem("userID"), requestOptions)
+        fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/paginas?filter[autorId]=" + sessionStorage.getItem("userID"), requestOptions)
             .then(res => res.json())
             .then(json => json.paginas)
             .then(result => this.setState({ userPagesList: result }))
@@ -71,17 +71,45 @@ class Profile extends Component {
 
     }
 
+    deletePage(id) {
+        var requestOptions = {
+            method: 'DELETE',
+            redirect: 'follow',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+            },
+        };
+
+        fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/paginas/" + id, requestOptions)
+            .then(res => res.json())
+            .then(window.location.reload(false))
+            .catch(error => {
+
+                console.log('error', error);
+            });
+
+
+    }
+
 
     render() {
         let pagesList = [];
 
         for (let i = 0; i < this.state.userPagesList.length; i++) {
             pagesList.push(
-                <div className="col-3">
+                <div className="col-4">
                     <div className="card-body">
-                        <img className="card-img-top rounded float-start" alt="imagem" src="https://picsum.photos/300/200"></img>
-                        <div className="container-fluid"></div>
-                        <h5 className="card-title ms-1">{this.state.userPagesList[i].titulo} </h5>
+                        <div className="card p-3">
+                            <img className="card-img-top rounded float-start" alt="imagem" src="https://picsum.photos/300/200"></img>
+                            <div className="container-fluid"></div>
+                            <h5 className="card-title ms-1">{this.state.userPagesList[i].titulo} </h5>
+                            <button className="btn btn-danger" onClick={() => this.deletePage(this.state.userPagesList[i].id)}>Eliminar Página</button>
+                        </div>
+
+
+
                     </div>
                 </div>
             )

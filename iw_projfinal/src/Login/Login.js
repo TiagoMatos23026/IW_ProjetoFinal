@@ -41,7 +41,7 @@ class Login extends Component {
             };
 
             //este fetch faz um fetch na api com o email que foi introduzido
-            fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/utilizadores?filter[email]=" + this.state.email, requestOptions)
+            fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/utilizadores?filter[email]=" + this.state.email, requestOptions)
                 .then(res => {
                     if (!res.ok) {
                         throw new Error();

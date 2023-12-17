@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
 import ViewPage from '../ViewPage/ViewPage';
 
 class Home extends Component {
@@ -65,7 +64,7 @@ class Home extends Component {
             },
         };
 
-        fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/utilizadores", requestOptions)
+        fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/utilizadores", requestOptions)
             .then(res => res.json())
             .then(result => {
                 this.setState({ users: result.utilizadores })
