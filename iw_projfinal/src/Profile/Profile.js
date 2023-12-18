@@ -102,7 +102,7 @@ class Profile extends Component {
                 <div className="col-4">
                     <div className="card-body">
                         <div className="card p-3">
-                            <img className="card-img-top rounded float-start" alt="imagem" src="https://picsum.photos/300/200"></img>
+                            <img className="card-img-top rounded float-start" alt="imagem" src={this.state.userPagesList[i].thumbnail}></img>
                             <div className="container-fluid"></div>
                             <h5 className="card-title ms-1">{this.state.userPagesList[i].titulo} </h5>
                             <button className="btn btn-danger" onClick={() => this.deletePage(this.state.userPagesList[i].id)}>Eliminar Página</button>
