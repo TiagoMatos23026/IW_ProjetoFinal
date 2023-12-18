@@ -203,6 +203,7 @@ class CreatePage extends Component {
             <option>Natureza</option>
             <option>Música</option>
             <option>Puzzles</option>
+            <option>Outra</option>
           </select>
         </div>
 

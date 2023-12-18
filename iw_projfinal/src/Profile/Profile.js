@@ -114,27 +114,8 @@ class Profile extends Component {
                 </div>
             )
         }
-
+   
         return <div class="p-3">
-
-            {/*
-            
-            esta parte aqui fazes tu!!
-
-            o "userProfile" é um json com o utente que está logged in e tem os seguintes atributos:
-
-            nome, nickname, password, email, telemovel, dataNasc, biografia, listaPaginas, membro
-
-            os dois últimos atributos podes ignorar por agora, e as outras cenas podes usar como tu quiseres.
-            obviamente só precisas mostrar aquilo que for relevante a ver-se no perfil.
-
-            Não te esqueças que a versão do bootstrap é a 4, portanto não te enganes na documentação!
-            
-            Have fun :) 
-            
-            
-            */}
-
             <div className="row">
                 <div className="col-md-2 text-center">
                     <div className="card p-3">
@@ -170,11 +151,6 @@ class Profile extends Component {
                 </div>
 
             </div>
-
-
-
-
-
         </div>
     }
 }
