@@ -25,6 +25,8 @@ class ViewPage extends Component {
 
           <div className="row mt-3">
             <div className="col-md-8 offset-md-2">
+              <h1 className="text-center">{this.props.page.titulo}</h1>
+
               <h2 className="text-center">---Introducao---</h2>
               <p className="text-center">{this.props.page.introducao}</p>
 
