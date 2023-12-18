@@ -56,7 +56,7 @@ class Register extends Component {
         };
 
         //fetch para criar User
-        fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/utilizadores", requestOptionsUser)
+        fetch("https://api.sheety.co/b87cef28352483d04b59d63bc988d481/iwProjFinal/utilizadores", requestOptionsUser)
             .then(res => res.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));

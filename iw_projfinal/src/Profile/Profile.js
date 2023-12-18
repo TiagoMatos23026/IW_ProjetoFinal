@@ -39,7 +39,7 @@ class Profile extends Component {
         }*/
 
 
-        fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptions)
+        fetch("https://api.sheety.co/b87cef28352483d04b59d63bc988d481/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptions)
             .then(res => res.json())
             .then(json => json.utilizadore)
             .then(result => this.setState({ userProfile: result }))
@@ -60,7 +60,7 @@ class Profile extends Component {
             },
         };
 
-        fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/paginas?filter[autorId]=" + sessionStorage.getItem("userID"), requestOptions)
+        fetch("https://api.sheety.co/b87cef28352483d04b59d63bc988d481/iwProjFinal/paginas?filter[autorId]=" + sessionStorage.getItem("userID"), requestOptions)
             .then(res => res.json())
             .then(json => json.paginas)
             .then(result => this.setState({ userPagesList: result }))
@@ -82,7 +82,7 @@ class Profile extends Component {
             },
         };
 
-        fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/paginas/" + id, requestOptions)
+        fetch("https://api.sheety.co/b87cef28352483d04b59d63bc988d481/iwProjFinal/paginas/" + id, requestOptions)
             .then(res => res.json())
             .then(window.location.reload(false))
             .catch(error => {

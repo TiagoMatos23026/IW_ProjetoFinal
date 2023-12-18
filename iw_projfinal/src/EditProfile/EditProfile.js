@@ -45,7 +45,7 @@ class EditProfile extends Component {
             },
         };
 
-        await fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptionsUser)
+        await fetch("https://api.sheety.co/b87cef28352483d04b59d63bc988d481/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptionsUser)
             .then(res => res.json())
             .then(result => result.utilizadore)
             .then(result => {
@@ -161,7 +161,7 @@ class EditProfile extends Component {
                 body: JSON.stringify(objUser)
             };
 
-            fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptionsUser)
+            fetch("https://api.sheety.co/b87cef28352483d04b59d63bc988d481/iwProjFinal/utilizadores/" + sessionStorage.getItem("userID"), requestOptionsUser)
                 .then(res => res.json())
                 .then(result => window.location.href = "/Home")
                 .catch(error => console.log('error', error));
