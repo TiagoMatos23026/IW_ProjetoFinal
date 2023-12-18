@@ -14,6 +14,8 @@ class CreatePage extends Component {
       conclusao: null,
       notas: null,
 
+      thumbnail: null,
+
       dificuldade: null,
       categoria: null,
 
@@ -37,6 +39,7 @@ class CreatePage extends Component {
         conclusao: this.state.conclusao,
         notas: this.state.notas,
         dificuldade: this.state.dificuldade,
+        thumbnail: this.state.thumbnail,
 
         categoria: this.state.categoria,
         autorId: this.state.autorId,
@@ -96,6 +99,10 @@ class CreatePage extends Component {
     this.setState({ categoria: evt.target.value })
   }
 
+  handleThumbnailChange(evt) {
+    this.setState({ thumbnail: evt.target.value })
+  }
+
   handleClose() {
     this.setState({ showModal: false });
   }
@@ -107,14 +114,15 @@ class CreatePage extends Component {
     let conclusao = this.state.conclusao;
     let dificuldade = this.state.dificuldade;
     let categoria = this.state.categoria;
+    let thumbnail = this.state.thumbnail;
 
     if (titulo === '' || dificuldade === '' || categoria === '' ||
-      introducao === '' || corpo === '' || conclusao === '') {
+      introducao === '' || corpo === '' || conclusao === '' || thumbnail === '') {
 
       this.setState({ showModal: true })
 
     } else if (titulo === null || dificuldade === null || categoria === null ||
-      introducao === null || corpo === null || conclusao === null) {
+      introducao === null || corpo === null || conclusao === null || thumbnail === null) {
 
       this.setState({ showModal: true })
 
@@ -196,6 +204,12 @@ class CreatePage extends Component {
             <option>Música</option>
             <option>Puzzles</option>
           </select>
+        </div>
+
+        <div className="container-fluid ms-3 mb-3">
+          <label for="introducao" className="form-label">Link da Thumbnail</label>
+          <textarea className="form-control" id="introducao" rows="3" placeholder="Exemplo: https://picsum.photos/300/200"
+            value={this.state.thumbnail} onChange={(evt) => { this.handleThumbnailChange(evt) }}></textarea>
         </div>
 
         <div className="container-fluid ms-3 mb-3 mt-4" >

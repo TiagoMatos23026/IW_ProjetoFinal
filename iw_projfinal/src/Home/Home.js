@@ -43,8 +43,7 @@ class Home extends Component {
             },
         };
 
-        //fetch("https://api.sheety.co/529a06531dfa4e9f8e77256cd5e1f636/iwProjFinal/paginas", requestOptions)
-        fetch("./paginas.json", requestOptions)
+        fetch("https://api.sheety.co/44bd5fc740d7913a1d6efa48ad6868aa/iwProjFinal/paginas", requestOptions)
 
         .then(res => res.json())
             .then(result => {
@@ -87,7 +86,7 @@ class Home extends Component {
             pagesList.push(
                 <div className="col-3 mt-3">
                     <div className="card-body">
-                        <img className="card-img-top rounded float-start" onClick={() => this.setState({ checkIfPage: true, pageID: i })} alt="imagem" src={pages[i].imagem}></img>
+                        <img className="card-img-top rounded float-start" onClick={() => this.setState({ checkIfPage: true, pageID: i })} alt="imagem" src={pages[i].thumbnail}></img>
                         <h5 className="card-title ms-1">{pages[i].titulo} </h5>
                         <p className="card-text ms-1">@{users[(pages[i].autorId) - 2].nickname}</p>
                     </div>
@@ -102,6 +101,7 @@ class Home extends Component {
                 <div className="container-fluid">
                     <div className="row justify-content-start">
                         {this.shuffle(pagesList)}
+                        
                     </div>
                 </div>
             )

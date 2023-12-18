@@ -19,7 +19,7 @@ class ViewPage extends Component {
         <div className="row">
           <h1 className="text-center"></h1>
           <div className="container text-center">
-            <img src="https://picsum.photos/300/200" alt="Thumbnail" className="img-center" />
+            <img src={this.props.page.thumbnail} alt="Thumbnail" className="img-center" />
             <p className="text-center">Escrito Por: {this.props.user.nome}</p>
           </div>
 
